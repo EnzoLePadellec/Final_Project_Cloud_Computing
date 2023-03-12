@@ -1,0 +1,53 @@
+# Define the services to be run in this Docker Compose file
+services:
+  # The 'app' service runs the Flask application
+  app:
+    # Build the image for the 'app' service from the current directory
+    build: .
+    # Run the command to start the Flask application
+    command: python -u app.py
+    # Expose port 5000 from the 'app' container to the host system
+    ports:
+      - "5000:5000"
+    # Mount the 'acknowledgements.txt' file from the host to the 'app' container
+    volumes:
+      - ./acknowledgements.txt:/app/acknowledgements.txt
+    # Depend on the 'db' service, so that it starts before the 'app' service
+    depends_on:
+      - db
+    # Assign the 'app' and 'db' services to the 'eagle-net' network
+    # so that they can communicate with each other using container names
+    # instead of IP addresses
+    networks:
+        - eagle-net
+
+  # The 'db' service runs the MongoDB database
+  db:
+    # Use the official MongoDB Docker image
+    image: mongo
+    # Set the hostname for the MongoDB container
+    hostname: test_mongodb
+    # Set environment variables for the MongoDB container
+    environment:
+      # Set the name of the database to create on startup
+      - MONGO_INITDB_DATABASE=eagle_db
+      # Set the username for the root user
+      - MONGO_INITDB_ROOT_USERNAME=root
+      # Set the password for the root user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    # Mount the 'init-db.js' script from the host to the 'db' container
+    volumes:
+      - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+    # Assign the 'app' and 'db' services to the 'eagle-net' network
+    # so that they can communicate with each other using container names
+    # instead of IP addresses
+    networks:
+        - eagle-net
+
+
+# Define a network for the services to use
+networks:
+  # Create a custom network called 'eagle-net'
+  eagle-net:
+    # Set the driver for the network to 'bridge'
+    driver: bridge
