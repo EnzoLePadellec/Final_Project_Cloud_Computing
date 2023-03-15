@@ -2,6 +2,7 @@
 
 This application is a web-based platform that displays information about various species of eagles. It retrieves data from a MongoDB database and presents it in a formatted text format on the homepage. Users can browse through the list of eagles and view their descriptions. Additionally, the application provides a link to an acknowledgements page, which displays a list of contributors to the project. The application runs as a Docker container, using the Flask framework for the web interface and MongoDB as the database management system. The application is designed to be scalable and efficient, with the use of containerization technology and network configuration to facilitate communication between different services.
 
+
 > ## 👷 Prerequisites
 
 1. Have a Github account properly setup with your local Git
@@ -25,6 +26,7 @@ This application is a web-based platform that displays information about various
     docker-compose up
     ```
 6. Check the result, `🚀 It Works!`
+
 
 > ## Docker Hub
 
