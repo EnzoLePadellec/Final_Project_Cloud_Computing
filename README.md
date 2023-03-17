@@ -30,4 +30,4 @@ This application is a web-based platform that displays information about various
 
 > ## Docker Hub
 
-Project link : https://hub.docker.com/layers/enzolp/final_project-app/latest/images/sha256:0ad53d352475eaedc8340bc9a1fb25ae2fb2e4f00ae6bfafc461c06607f66c83
+Project link : https://hub.docker.com/layers/enzolp/final-project-app/latest/images/sha256:eac2168fbdc8effc0157b0901a6fb600cf19757b1637428beb0837ed11ba60a4
